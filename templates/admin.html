@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Amigo Invisible</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🎄 Panel de Administración 🎄</h1>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    {% if mensaje %}
+        <p style="color:green">{{ mensaje }}</p>
+    {% endif %}
+
+    <form method="POST">
+        <label><strong>Contraseña:</strong></label><br>
+        <input type="password" name="password" required>
+
+        <br><br>
+        <button type="submit" name="accion" value="ver">👁 Ver asignaciones</button>
+        <button type="submit" name="accion" value="reiniciar">🔄 Reiniciar sorteo</button>
+    </form>
+
+    {% if mostrar %}
+        <h3>Asignaciones actuales:</h3>
+        <div class="admin-list">
+            <ul>
+            {% for persona, asignado in asignaciones.items() %}
+                <li><strong>{{ persona }}</strong> → 🎁 {{ asignado }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <br>
+    <a href="/">Volver</a>
+</div>
+
+</body>
+</html>
+

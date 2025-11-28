@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Amigo Invisible</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>🎄 Amigo Invisible Familia Morilla-Orts-Gómez 🎄</h1>
+
+    <form method="POST">
+
+        <label><strong>¿Quién eres?</strong></label><br>
+        <select name="persona" required>
+            <option value="">Selecciona tu nombre</option>
+            {% for p in familia %}
+            <option value="{{ p }}">{{ p }}</option>
+            {% endfor %}
+        </select>
+
+        <h3>¿Quién NO quieres que te toque?</h3>
+
+        {% for p in familia %}
+            <label>
+                <input type="checkbox" name="excluir" value="{{ p }}">
+                {{ p }}
+            </label><br>
+        {% endfor %}
+
+        <button type="submit">🎁 Dime quién me ha tocado</button>
+    </form>
+
+    <br>
+    <a href="/admin">Panel Admin</a>
+</div>
+
+</body>
+</html>
+
